@@ -15,29 +15,42 @@ namespace Fitness
 
             //looping
             //keluar bila user masukkin "quit"
+
             while (true)
             {
-                //keluarkan pertanyaanya
-                Console.WriteLine("Berapa lama lari?");
-
-                //minta input dari user
-                input = Console.ReadLine();
-                
-                //menambahkan inputnya
-                jumlah = jumlah + Int32.Parse(input);
-
-                if (input == "quit")
+                try
                 {
-                    break;
+                    //keluarkan pertanyaanya
+                    Console.WriteLine("Berapa lama lari?");
+
+                    //minta input dari user
+                    input = Console.ReadLine();
+
+                    //jika quit maka break
+                    if (input.ToLower() == "quit")
+                    {
+                        break;
+                    }
+
+                    //jika input minus
+                    if (Int32.Parse(input) < 0)
+                    {
+                        Console.WriteLine("Mohon input dengan benar");
+                        continue; //ngulang dari atas while
+                    }
+
+                    //menambahkan inputnya
+                    jumlah = jumlah + Int32.Parse(input);
+
+                    //ngerlurin inputnya
+                    Console.WriteLine("Selamat anda sudah lari " + jumlah + " menit");
                 }
-                
-                //ngerlurin inputnya
-                Console.WriteLine("Selamat anda sudah lari " + jumlah + "menit");
-
+                catch(Exception)
+                {
+                    Console.WriteLine("Mohon input dengan benar");
+                    continue; //ngulang dari atas while
+                }
             }
-            
-
-
 
         }
     }
